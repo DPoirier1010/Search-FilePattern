@@ -3,24 +3,24 @@
   Get the path of a certain word pattern
 
  .Description
-  Return all instance of the word pattern
+ Search for a pattern in the selected path
   
 
  .Example
-   Search-Word -Path c: -Word .txt
+   Search-FilePattern -Path c: -Word .txt
 
 #>
-function Search-Word{
+function Search-FilePattern{
     param(
         [Parameter(Mandatory)][string] $Path,
 
-        [Parameter(Mandatory)][string] $Word
+        [Parameter(Mandatory)][string] $Pattern
     )      
-    $Word = [string]"*" + $Word + [String]"*"
-    Get-ChildItem -path $path -include $word -recurse -ErrorAction SilentlyContinue -file | select FullName
+    $Pattern = [string]"*" + $Pattern + [String]"*"
+    Get-ChildItem -path $path -include $Pattern -recurse -ErrorAction SilentlyContinue -file | select FullName
 
 
 
     }
     
-    Export-ModuleMember -Function Search-Word
+    Export-ModuleMember -Function Search-FilePattern
